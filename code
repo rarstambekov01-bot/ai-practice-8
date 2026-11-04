@@ -1,24 +1,20 @@
 
-import numpy as np
 from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
 
-# Данные: посетители и проданные обеды
-X = np.array([100, 150, 200, 250, 300]).reshape(-1, 1)
-y = np.array([29, 41, 53, 66, 78])
+# Количество посетителей столовой
+X = [[100], [150], [200], [250], [300]]
 
-# Создаем и обучаем модель
+# Сколько обедов было продано
+y = [29, 41, 53, 66, 78]
+
+# Создаём модель линейной регрессии
 model = LinearRegression()
+
+# Обучаем модель на прошлых данных
 model.fit(X, y)
 
-# Прогноз для 180 посетителей
-prediction = model.predict([[180]])
+# Предсказываем продажи при 180 посетителях
+result = model.predict([[180]])
 
-# Проверяем ошибку модели
-y_pred = model.predict(X)
-mse = mean_squared_error(y, y_pred)
-
-print("Коэффициент:", model.coef_[0])
-print("Свободный член:", model.intercept_)
-print("Прогноз:", prediction[0])
-print("MSE:", mse)
+# Выводим результат
+print("Прогноз обедов:", round(result[0]))
